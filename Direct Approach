@@ -1,0 +1,46 @@
+lists = [[1, 2, 3, 4],
+         [5, 6, 7, 8],
+         [9, 10, 11, 12],
+         [13, 14, 15, 16]]
+         
+## Output: 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+def spiral(lists):
+    end_row_index = len(lists)
+    end_column_index = len(lists[0])
+    start_row_index = 0
+    start_column_index = 0
+    while (start_row_index < end_row_index) and (start_column_index < end_column_index):
+        
+        ## Printing out the first row from left to right
+        for i in range(start_column_index, end_column_index):
+            print(lists[start_row_index][i], end = ' ')
+        
+        ## to avoid repetition of numbers from the first row
+        start_row_index += 1
+        
+        ## Printing out the the last column from the 2nd row and descending down the column
+        for j in range(start_row_index, end_row_index):
+            print(lists[j][end_row_index-1], end = ' ')
+            
+        ## to avoid repetition of numbers from the last column
+        end_column_index -= 1
+        
+        if start_row_index < end_row_index:
+            
+            ## Printing out in ascending up the column
+            for k in range(end_column_index-1, start_column_index-1, -1):
+                print(lists[end_row_index-1][k], end = ' ')
+                
+            ## to avoid repetition of numbers from the last row
+            end_row_index -= 1
+            
+        if start_column_index < end_column_index:
+        
+            ## Printing out from right to left
+            for l in range(end_row_index-1, start_row_index-1, -1):
+                print(lists[l][start_column_index], end = ' ')
+            ## to avoid repetition of numbers from the first column
+            start_column_index += 1
+            
+spiral(lists)
