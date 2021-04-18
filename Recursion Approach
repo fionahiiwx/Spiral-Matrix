@@ -1,0 +1,28 @@
+lists = [[1, 2, 3, 4],
+         [5, 6, 7, 8],
+         [9, 10, 11, 12],
+         [13, 14, 15, 16]]
+
+def spiral_Recursion(lists, i, j, a, b): ## i = starting row index, j = starting column index
+    
+    ## outside of the lists
+    if (i >= a or j >= b): 
+        return
+        
+    for f in range(i, a):
+        print(lists[i][f], end = ' ')
+    for f in range(i+1, b):
+        print(lists[f][b-1], end = ' ')
+    if (a-1) != i:
+        for f in range(b-2, j-1, -1):
+            print(lists[a-1][f], end = ' ')
+    if (b-1) != j:
+        for f in range(a-2, i, -1):
+            print(lists[f][j], end = ' ')
+    
+    ## recuring with the middle sections
+    spiral_Recursion(lists, i+1, j+1, a-1, b-1)
+
+end_row_index = len(lists)
+end_column_index = len(lists[0])
+spiral_Recursion(lists, 0, 0, end_row_index, end_column_index)
